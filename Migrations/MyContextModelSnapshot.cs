@@ -2,6 +2,7 @@
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
+using efcore;
 
 namespace efcore.Migrations
 {
@@ -14,11 +15,14 @@ namespace efcore.Migrations
             modelBuilder
                 .HasAnnotation("ProductVersion", "3.0.0");
 
-            modelBuilder.Entity("EFGetStarted.Blog", b =>
+            modelBuilder.Entity("efcore.Blog", b =>
                 {
                     b.Property<int>("BlogId")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("INTEGER");
+
+                    b.Property<string>("State")
+                        .HasColumnType("TEXT");
 
                     b.Property<string>("Url")
                         .HasColumnType("TEXT");
@@ -28,7 +32,7 @@ namespace efcore.Migrations
                     b.ToTable("Blogs");
                 });
 
-            modelBuilder.Entity("EFGetStarted.Post", b =>
+            modelBuilder.Entity("efcore.Post", b =>
                 {
                     b.Property<int>("PostId")
                         .ValueGeneratedOnAdd()
@@ -50,9 +54,9 @@ namespace efcore.Migrations
                     b.ToTable("Posts");
                 });
 
-            modelBuilder.Entity("EFGetStarted.Post", b =>
+            modelBuilder.Entity("efcore.Post", b =>
                 {
-                    b.HasOne("EFGetStarted.Blog", "Blog")
+                    b.HasOne("efcore.Blog", "Blog")
                         .WithMany("Posts")
                         .HasForeignKey("BlogId")
                         .OnDelete(DeleteBehavior.Cascade)

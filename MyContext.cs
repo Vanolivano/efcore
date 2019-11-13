@@ -16,6 +16,7 @@ namespace efcore
     {
         public int BlogId { get; set; }
         public string Url { get; set; }
+        public string State { get; set; }
 
         public List<Post> Posts { get; } = new List<Post>();
     }
